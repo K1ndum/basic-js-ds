@@ -89,18 +89,18 @@ module.exports = class BinarySearchTree {
   }
 
   remove(data) {
-    this.rooT = removeNode(this.rooT, data);
+    this.rooT = removeInTree(this.rooT, data);
 
-    function removeNode(node, data) {
+    function removeInTree(node, data) {
       if (!node) {
         return null;
       }
 
       if (data < node.data) {
-        node.left = removeNode(node.left, data);
+        node.left = removeInTree(node.left, data);
         return node;
       } else if (node.data < data) {
-        node.right = removeNode(node.right, data);
+        node.right = removeInTree(node.right, data);
         return node;
       } else {
         if (!node.left && !node.right) {
@@ -123,7 +123,7 @@ module.exports = class BinarySearchTree {
         }
         node.data = minFromRight.data;
 
-        node.right = removeNode(node.right, minFromRight.data);
+        node.right = removeInTree(node.right, minFromRight.data);
 
         return node;
       }
@@ -149,6 +149,7 @@ module.exports = class BinarySearchTree {
     }
 
     let node = this.rooT;
+
     while (node.right) {
       node = node.right;
     }
